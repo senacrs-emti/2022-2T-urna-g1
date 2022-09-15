@@ -1,0 +1,39 @@
+*{
+    margin: 0px;
+}
+
+body{
+    background-color: rgb(176, 176, 176);
+    margin: 20px;
+    margin-top: 50px;
+}
+
+.numeros{
+    margin-left: auto;
+    margin-right: auto;
+    width: 272px;
+}
+
+.num{
+    width: 80px;
+    height: 65px;
+    margin: 4px;
+}
+
+.block1{
+    background-color: black;
+    width: 500px;
+    height: 500px;
+    display: block;
+    float: right;
+    margin-right: 20px;
+}
+
+.butn{
+    width: 120px;
+    height: 65px;
+    margin: 5px;
+    margin-top: 65px;
+    margin-left: 32px;
+    margin-right: auto;
+}
