@@ -15,18 +15,28 @@ body{
 }
 
 .num{
+    color: white;
     width: 80px;
     height: 65px;
     margin: 4px;
+    transition: transform 0.3s;
+    background-color: rgb(50, 50, 50);
 }
 
 .block1{
-    background-color: black;
-    width: 500px;
+    background-color: #515151;
+    width: 445px;
     height: 500px;
     display: block;
     float: right;
-    margin-right: 20px;
+    margin-right: 0px;
+}
+
+.block2{
+    display: block;
+    background-color: white;
+    height: 500px;
+    width: 800px;
 }
 
 .butn{
@@ -34,6 +44,28 @@ body{
     height: 65px;
     margin: 5px;
     margin-top: 65px;
-    margin-left: 32px;
+    margin-left: 20px;
     margin-right: auto;
+    transition: transform 0.3s;
+}
+
+.butn:hover{
+    transform: scale(1.07);
+}
+
+.num:hover{
+    transform: scale(1.07);
+}
+
+.num:active{
+    transform: scale(0.9);
+}
+
+.butn:active{
+    transform: scale(0.9);
+}
+
+#digitos{
+    background-color: white;
+    margin: 40px;
 }

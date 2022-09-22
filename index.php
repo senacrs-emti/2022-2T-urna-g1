@@ -9,32 +9,41 @@
 
 </head>
 <body>
-    
+
     <div class="block1">
         
         <div class="numeros">
 
-            <button type="submit" class="btn btn-block btn-primary num">1</button>
-            <button type="submit" class="btn btn-block btn-primary num">2</button>
-            <button type="submit" class="btn btn-block btn-primary num">3</button>
-            <button type="submit" class="btn btn-block btn-primary num">4</button>
-            <button type="submit" class="btn btn-block btn-primary num">5</button>
-            <button type="submit" class="btn btn-block btn-primary num">6</button>
-            <button type="submit" class="btn btn-block btn-primary num">7</button>
-            <button type="submit" class="btn btn-block btn-primary num">8</button>
-            <button type="submit" class="btn btn-block btn-primary num">9</button>
-            <button type="submit" style="margin-left: 96px;" class="btn btn-block btn-primary num">0</button>
+            <button type="submit" class="btn num" onclick="clicar(1)">1</button>
+            <button type="submit" class="btn num" onclick="clicar(2)">2</button>
+            <button type="submit" class="btn num" onclick="clicar(3)">3</button>
+            <button type="submit" class="btn num" onclick="clicar(4)">4</button>
+            <button type="submit" class="btn num" onclick="clicar(5)">5</button>
+            <button type="submit" class="btn num" onclick="clicar(6)">6</button>
+            <button type="submit" class="btn num" onclick="clicar(7)">7</button>
+            <button type="submit" class="btn num" onclick="clicar(8)">8</button>
+            <button type="submit" class="btn num" onclick="clicar(9)">9</button>
+            <button type="submit" style="margin-left: 96px;" class="btn num" onclick="clicar(0)">0</button>
 
         </div>
 
-        <button type="submit" class="butn" >branco</button>
+        <button type="submit" class="butn" style="background-color: white;" >branco</button>
 
-        <button type="submit" class="butn" >corrige</button>
+        <button type="submit" class="butn" style="background-color: #e93c3c;" onclick="corrige()" >corrige</button>
         
-        <button type="submit" class="butn" style="height: 100px;" >confirma</button>
+        <button type="submit" class="butn" style="height: 100px; background-color: #2ac12a;" onclick="confirma()" >confirma</button>
 
     </div>
 
+    <div class="block2">
+
+        <div class="box">
+
+            <p id="digitos"></p>
+        
+        </div>
+
+    </div>
 
     <script src="assets/script.js"></script>
 </body>
