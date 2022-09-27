@@ -10,6 +10,10 @@
 </head>
 <body>
 
+    <!-- audios  -->
+        <audio src="audios/som-confirma.mp3" id="audioc"></audio>
+
+
     <div class="block1">
         
         <div class="numeros">
