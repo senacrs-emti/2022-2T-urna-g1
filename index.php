@@ -18,7 +18,15 @@
 
         <div class="block3">
         
-            <img src="imagens/logo-justica-eleitora-senac.png" alt="logo" style="heigth:10px;">
+            <img src="imagens/logo-senac.png" alt="logo" style="width: 200px;  margin-top: -27px; float:left;">
+
+            <div class="pan" style="width: 245px; float: right; height: 120px; text-align: center;">
+
+                <p style="margin-top: 15px; font-size: 32px;">Justiça</p>
+                <p style="font-size:32px;">Eleitoral</p>
+
+            </div>
+
         
         </div>
         
@@ -47,12 +55,21 @@
 
     <div class="block2">
 
-        <div class="digitos">
+        <div>
+            
+            <div style="display: inline-flex; margin-left: 211px; margin-top: 110px;">
+            
+                <p class="digitos" id="digitos1"></p>
+                <p class="digitos" id="digitos2"></p>
+                <p class="digitos" id="digitos3"></p>
+                <p class="digitos" id="digitos4"></p>
+                        
+            </div>
 
-            <p>Digitos : </p>
+        </div>
 
-            <p id="digitos"></p>
-        
+        <div>
+
         </div>
 
     </div>

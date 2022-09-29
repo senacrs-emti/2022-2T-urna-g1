@@ -82,3 +82,11 @@ body{
     background-color: white;
     margin: 40px;
 }
+
+.digitos{
+    width: 92px;
+    font-size: 65px;
+    border: solid 1px black;
+    height: 92px;
+    text-align: center;
+}
