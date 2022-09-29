@@ -15,6 +15,12 @@
 
 
     <div class="block1">
+
+        <div class="block3">
+        
+            <img src="imagens/logo-justica-eleitora-senac.png" alt="logo" style="heigth:10px;">
+        
+        </div>
         
         <div class="numeros">
 
@@ -41,7 +47,9 @@
 
     <div class="block2">
 
-        <div class="box">
+        <div class="digitos">
+
+            <p>Digitos : </p>
 
             <p id="digitos"></p>
         
