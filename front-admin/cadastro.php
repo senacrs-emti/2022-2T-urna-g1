@@ -1,9 +1,9 @@
 <?php
 
 $login = $_POST['login'];
-$senha = MD5($_POST['senha']);
-$cpf = $_POST['cpf'];
-$connect = mysql_connect('nome_do_servidor','nome_de_usuario','senha','cpf');
+$CPF = MD5($_POST['CPF']);
+$foto = $_POST['foto'];
+$connect = mysql_connect('nome_do_servidor','nome_de_usuario','CPF','foto');
 $db = mysql_select_db('nome_do_banco_de_dados');
 $query_select = "SELECT login FROM usuarios WHERE login = '$login'";
 $select = mysql_query($query_select,$connect);
@@ -24,7 +24,7 @@ $logarray = $array['login'];
         die();
 
       }else{
-        $query = "INSERT INTO usuarios (login,senha,cpf) VALUES ('$login','$senha','$cpf')";
+        $query = "INSERT INTO usuarios (login,CPF,foto) VALUES ('$login','$CPF','$foto')";
         $insert = mysql_query($query,$connect);
 
         if($insert){
