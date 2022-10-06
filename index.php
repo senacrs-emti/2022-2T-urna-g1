@@ -49,31 +49,18 @@
 
         <button type="submit" class="butn" style="background-color: #e93c3c;" onclick="corrige()" >corrige</button>
         
-        <button type="submit" class="butn" style="height: 100px; background-color: #2ac12a;" onclick="confirma()" >confirma</button>
+        <button type="submit" class="butn" style="height: 100px; background-color: #2ac12a;" id="butconfirma" onclick="confirma()" >confirma</button>
 
     </div>
 
     <div class="block2">
-
-        <div>
-            
-            <div style="display: inline-flex; margin-left: 211px; margin-top: 110px;">
-            
-                <p class="digitos" id="digitos1"></p>
-                <p class="digitos" id="digitos2"></p>
-                <p class="digitos" id="digitos3"></p>
-                <p class="digitos" id="digitos4"></p>
-                        
-            </div>
-
-        </div>
-
-        <div>
-
-        </div>
+        
+    <input type="text" id="telaAtual" value="bloqueado">
 
     </div>
 
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="assets/script.js"></script>
 </body>
 </html>
