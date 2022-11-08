@@ -8,19 +8,19 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema urna
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema urna
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
-USE `mydb` ;
+CREATE SCHEMA IF NOT EXISTS `urna` DEFAULT CHARACTER SET utf8 ;
+USE `urna` ;
 
 -- -----------------------------------------------------
--- Table `mydb`.`acessos`
+-- Table `urna`.`acessos`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`acessos` (
+CREATE TABLE IF NOT EXISTS `urna`.`acessos` (
   `AcessoID` INT NOT NULL AUTO_INCREMENT,
   `Nome` VARCHAR(150) NOT NULL,
   `Usuario` VARCHAR(45) NOT NULL,
@@ -31,9 +31,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`partidos`
+-- Table `urna`.`partidos`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`partidos` (
+CREATE TABLE IF NOT EXISTS `urna`.`partidos` (
   `PartidosID` INT NOT NULL AUTO_INCREMENT,
   `Nome` VARCHAR(150) NOT NULL,
   `Sigla` VARCHAR(20) NOT NULL,
@@ -44,9 +44,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`tipo`
+-- Table `urna`.`tipo`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`tipo` (
+CREATE TABLE IF NOT EXISTS `urna`.`tipo` (
   `TipoID` INT NOT NULL AUTO_INCREMENT,
   `Nome` VARCHAR(45) NOT NULL,
   `Excluido` VARCHAR(1) NOT NULL DEFAULT 'f',
@@ -55,9 +55,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`estados`
+-- Table `urna`.`estados`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`estados` (
+CREATE TABLE IF NOT EXISTS `urna`.`estados` (
   `EstadoID` INT NOT NULL AUTO_INCREMENT,
   `Nome` VARCHAR(150) NOT NULL,
   `Sigla` CHAR(3) NOT NULL,
@@ -67,102 +67,102 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`municipios`
+-- Table `urna`.`municipios`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`municipios` (
+CREATE TABLE IF NOT EXISTS `urna`.`municipios` (
   `MunicipiosID` INT NOT NULL AUTO_INCREMENT,
   `Nome` VARCHAR(150) NOT NULL,
   `Excluido` VARCHAR(1) NOT NULL DEFAULT 'f',
   `EstadoID` INT NOT NULL,
-  PRIMARY KEY (`MunicipiosID`),
+  PRIMARY KEY (`MunicipiosID`)/*,
   INDEX `fk_municipios_estados1_idx` (`EstadoID` ASC) VISIBLE,
   CONSTRAINT `fk_municipios_estados1`
     FOREIGN KEY (`EstadoID`)
-    REFERENCES `mydb`.`estados` (`EstadoID`)
+    REFERENCES `urna`.`estados` (`EstadoID`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON UPDATE NO ACTION*/)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`zonas`
+-- Table `urna`.`zonas`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`zonas` (
+CREATE TABLE IF NOT EXISTS `urna`.`zonas` (
   `ZonasID` INT NOT NULL AUTO_INCREMENT,
   `Nome` VARCHAR(100) NOT NULL,
   `Excluido` VARCHAR(1) NOT NULL DEFAULT 'f',
   `EstadoID` INT NOT NULL,
   `MunicipiosID` INT NOT NULL,
-  PRIMARY KEY (`ZonasID`),
+  PRIMARY KEY (`ZonasID`)/*,
   INDEX `fk_zonas_estados1_idx` (`EstadoID` ASC) VISIBLE,
   INDEX `fk_zonas_municipios1_idx` (`MunicipiosID` ASC) VISIBLE,
   CONSTRAINT `fk_zonas_estados1`
     FOREIGN KEY (`EstadoID`)
-    REFERENCES `mydb`.`estados` (`EstadoID`)
+    REFERENCES `urna`.`estados` (`EstadoID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_zonas_municipios1`
     FOREIGN KEY (`MunicipiosID`)
-    REFERENCES `mydb`.`municipios` (`MunicipiosID`)
+    REFERENCES `urna`.`municipios` (`MunicipiosID`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON UPDATE NO ACTION*/)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`secao`
+-- Table `urna`.`secao`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`secao` (
+CREATE TABLE IF NOT EXISTS `urna`.`secao` (
   `SecaoID` INT NOT NULL AUTO_INCREMENT,
   `Num` VARCHAR(45) NOT NULL,
   `Excluido` VARCHAR(1) NOT NULL DEFAULT 'f',
   `ZonasID` INT NOT NULL,
   `MunicipiosID` INT NOT NULL,
   `EstadoID` INT NOT NULL,
-  PRIMARY KEY (`SecaoID`),
+  PRIMARY KEY (`SecaoID`)/*,
   INDEX `fk_secao_zonas1_idx` (`ZonasID` ASC) VISIBLE,
   INDEX `fk_secao_municipios1_idx` (`MunicipiosID` ASC) VISIBLE,
   INDEX `fk_secao_estados1_idx` (`EstadoID` ASC) VISIBLE,
   CONSTRAINT `fk_secao_zonas1`
     FOREIGN KEY (`ZonasID`)
-    REFERENCES `mydb`.`zonas` (`ZonasID`)
+    REFERENCES `urna`.`zonas` (`ZonasID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_secao_municipios1`
     FOREIGN KEY (`MunicipiosID`)
-    REFERENCES `mydb`.`municipios` (`MunicipiosID`)
+    REFERENCES `urna`.`municipios` (`MunicipiosID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_secao_estados1`
     FOREIGN KEY (`EstadoID`)
-    REFERENCES `mydb`.`estados` (`EstadoID`)
+    REFERENCES `urna`.`estados` (`EstadoID`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON UPDATE NO ACTION*/)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`cargos`
+-- Table `urna`.`cargos`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`cargos` (
+CREATE TABLE IF NOT EXISTS `urna`.`cargos` (
   `CargosID` INT NOT NULL AUTO_INCREMENT,
   `Nome` VARCHAR(45) NOT NULL,
   `Excluido` VARCHAR(1) NOT NULL DEFAULT 'f',
   `TipoID` INT NOT NULL,
-  PRIMARY KEY (`CargosID`),
+  PRIMARY KEY (`CargosID`)/*,
   INDEX `fk_cargos_Tipo1_idx` (`TipoID` ASC) VISIBLE,
   CONSTRAINT `fk_cargos_Tipo1`
     FOREIGN KEY (`TipoID`)
-    REFERENCES `mydb`.`tipo` (`TipoID`)
+    REFERENCES `urna`.`tipo` (`TipoID`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON UPDATE NO ACTION*/)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`candidatos`
+-- Table `urna`.`candidatos`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`candidatos` (
+CREATE TABLE IF NOT EXISTS `urna`.`candidatos` (
   `CandidatoID` INT NOT NULL AUTO_INCREMENT,
   `NomeUrna` VARCHAR(150) NOT NULL,
   `Nome` VARCHAR(150) NOT NULL,
@@ -173,26 +173,26 @@ CREATE TABLE IF NOT EXISTS `mydb`.`candidatos` (
   `Excluido` VARCHAR(1) NOT NULL DEFAULT 'f',
   `PartidosID` INT NOT NULL,
   `CargosID` INT NOT NULL,
-  PRIMARY KEY (`CandidatoID`),
+  PRIMARY KEY (`CandidatoID`)/*,
   INDEX `fk_candidatos_partidos1_idx` (`PartidosID` ASC) VISIBLE,
   INDEX `fk_candidatos_cargos1_idx` (`CargosID` ASC) VISIBLE,
   CONSTRAINT `fk_candidatos_partidos1`
     FOREIGN KEY (`PartidosID`)
-    REFERENCES `mydb`.`partidos` (`PartidosID`)
+    REFERENCES `urna`.`partidos` (`PartidosID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_candidatos_cargos1`
     FOREIGN KEY (`CargosID`)
-    REFERENCES `mydb`.`cargos` (`CargosID`)
+    REFERENCES `urna`.`cargos` (`CargosID`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON UPDATE NO ACTION*/)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`urnas`
+-- Table `urna`.`urnas`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`urnas` (
+CREATE TABLE IF NOT EXISTS `urna`.`urnas` (
   `UrnaID` INT NOT NULL,
   `N.Identificacao` VARCHAR(45) NOT NULL,
   `Excluido` VARCHAR(1) NOT NULL DEFAULT 'f',
@@ -201,72 +201,72 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`importar`
+-- Table `urna`.`importar`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`importar` (
+CREATE TABLE IF NOT EXISTS `urna`.`importar` (
   `ImportarID` INT NOT NULL,
   `SecaoID` INT NOT NULL,
   `urnaID` INT NOT NULL,
   `DataHora` DATETIME NOT NULL,
   `Nome` VARCHAR(150) NOT NULL,
   `TipoID` INT NOT NULL,
-  PRIMARY KEY (`ImportarID`),
+  PRIMARY KEY (`ImportarID`)/*,
   INDEX `fk_importar_secao1_idx` (`SecaoID` ASC) VISIBLE,
   INDEX `fk_importar_urna1_idx` (`urnaID` ASC) VISIBLE,
   INDEX `fk_importar_Tipo1_idx` (`TipoID` ASC) VISIBLE,
   CONSTRAINT `fk_importar_secao1`
     FOREIGN KEY (`SecaoID`)
-    REFERENCES `mydb`.`secao` (`SecaoID`)
+    REFERENCES `urna`.`secao` (`SecaoID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_importar_urna1`
     FOREIGN KEY (`urnaID`)
-    REFERENCES `mydb`.`urnas` (`UrnaID`)
+    REFERENCES `urna`.`urnas` (`UrnaID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_importar_Tipo1`
     FOREIGN KEY (`TipoID`)
-    REFERENCES `mydb`.`tipo` (`TipoID`)
+    REFERENCES `urna`.`tipo` (`TipoID`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON UPDATE NO ACTION*/)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`votoscandidatos`
+-- Table `urna`.`votoscandidatos`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`votoscandidatos` (
+CREATE TABLE IF NOT EXISTS `urna`.`votoscandidatos` (
   `VotoCandidatoID` INT NOT NULL AUTO_INCREMENT,
   `DataHora` DATETIME NOT NULL,
   `SecaoID` INT NOT NULL,
   `CandidatoID` INT NOT NULL,
   `importarID` INT NOT NULL,
-  PRIMARY KEY (`VotoCandidatoID`),
+  PRIMARY KEY (`VotoCandidatoID`)/*,
   INDEX `fk_votos_secao1_idx` (`SecaoID` ASC) VISIBLE,
   INDEX `fk_votos_candidatos1_idx` (`CandidatoID` ASC) VISIBLE,
   INDEX `fk_votoscandidatos_importar1_idx` (`importarID` ASC) VISIBLE,
   CONSTRAINT `fk_votos_secao1`
     FOREIGN KEY (`SecaoID`)
-    REFERENCES `mydb`.`secao` (`SecaoID`)
+    REFERENCES `urna`.`secao` (`SecaoID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_votos_candidatos1`
     FOREIGN KEY (`CandidatoID`)
-    REFERENCES `mydb`.`candidatos` (`CandidatoID`)
+    REFERENCES `urna`.`candidatos` (`CandidatoID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_votoscandidatos_importar1`
     FOREIGN KEY (`importarID`)
-    REFERENCES `mydb`.`importar` (`ImportarID`)
+    REFERENCES `urna`.`importar` (`ImportarID`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON UPDATE NO ACTION*/)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`eleicoes`
+-- Table `urna`.`eleicoes`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`eleicoes` (
+CREATE TABLE IF NOT EXISTS `urna`.`eleicoes` (
   `EleicaoID` INT NOT NULL AUTO_INCREMENT,
   `Data` DATE NOT NULL,
   `HoraI` TIME NOT NULL,
@@ -274,74 +274,74 @@ CREATE TABLE IF NOT EXISTS `mydb`.`eleicoes` (
   `Excluido` VARCHAR(1) NOT NULL DEFAULT 'f',
   `TipoID` INT NOT NULL,
   `VotoCandidatoID` INT NOT NULL,
-  PRIMARY KEY (`EleicaoID`),
+  PRIMARY KEY (`EleicaoID`)/*,
   INDEX `fk_eleições_Tipo1_idx` (`TipoID` ASC) VISIBLE,
   INDEX `fk_eleicoes_votoscandidatos1_idx` (`VotoCandidatoID` ASC) VISIBLE,
   CONSTRAINT `fk_eleições_Tipo1`
     FOREIGN KEY (`TipoID`)
-    REFERENCES `mydb`.`tipo` (`TipoID`)
+    REFERENCES `urna`.`tipo` (`TipoID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_eleicoes_votoscandidatos1`
     FOREIGN KEY (`VotoCandidatoID`)
-    REFERENCES `mydb`.`votoscandidatos` (`VotoCandidatoID`)
+    REFERENCES `urna`.`votoscandidatos` (`VotoCandidatoID`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON UPDATE NO ACTION*/)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`candidaturas`
+-- Table `urna`.`candidaturas`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`candidaturas` (
+CREATE TABLE IF NOT EXISTS `urna`.`candidaturas` (
   `CandidaturaID` INT NOT NULL AUTO_INCREMENT,
   `EleicaoID` INT NOT NULL,
   `CandidatoID` INT NOT NULL,
-  PRIMARY KEY (`CandidaturaID`),
+  PRIMARY KEY (`CandidaturaID`)/*,
   INDEX `fk_candidaturas_eleições1_idx` (`EleicaoID` ASC) VISIBLE,
   INDEX `fk_candidaturas_candidatos1_idx` (`CandidatoID` ASC) VISIBLE,
   CONSTRAINT `fk_candidaturas_eleições1`
     FOREIGN KEY (`EleicaoID`)
-    REFERENCES `mydb`.`eleicoes` (`EleicaoID`)
+    REFERENCES `urna`.`eleicoes` (`EleicaoID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_candidaturas_candidatos1`
     FOREIGN KEY (`CandidatoID`)
-    REFERENCES `mydb`.`candidatos` (`CandidatoID`)
+    REFERENCES `urna`.`candidatos` (`CandidatoID`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON UPDATE NO ACTION*/)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`votoseleitores`
+-- Table `urna`.`votoseleitores`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`votoseleitores` (
+CREATE TABLE IF NOT EXISTS `urna`.`votoseleitores` (
   `VotoEleitor` INT NOT NULL AUTO_INCREMENT,
   `DataHora` DATETIME NOT NULL,
   `Titulo` VARCHAR(45) NOT NULL,
   `SecaoID` INT NOT NULL,
   `EleicaoID` INT NOT NULL,
   `importarID` INT NOT NULL,
-  PRIMARY KEY (`VotoEleitor`),
+  PRIMARY KEY (`VotoEleitor`)/*,
   INDEX `fk_votoseleitores_secao1_idx` (`SecaoID` ASC) VISIBLE,
   INDEX `fk_votoseleitores_eleicoes1_idx` (`EleicaoID` ASC) VISIBLE,
   INDEX `fk_votoseleitores_importar1_idx` (`importarID` ASC) VISIBLE,
   CONSTRAINT `fk_votoseleitores_secao1`
     FOREIGN KEY (`SecaoID`)
-    REFERENCES `mydb`.`secao` (`SecaoID`)
+    REFERENCES `urna`.`secao` (`SecaoID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_votoseleitores_eleicoes1`
     FOREIGN KEY (`EleicaoID`)
-    REFERENCES `mydb`.`eleicoes` (`EleicaoID`)
+    REFERENCES `urna`.`eleicoes` (`EleicaoID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_votoseleitores_importar1`
     FOREIGN KEY (`importarID`)
-    REFERENCES `mydb`.`importar` (`ImportarID`)
+    REFERENCES `urna`.`importar` (`ImportarID`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON UPDATE NO ACTION*/)
 ENGINE = InnoDB;
 
 
